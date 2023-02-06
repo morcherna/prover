@@ -1,40 +1,27 @@
-#include <iostream>
-#include <algorithm>
-void vyvod(int *arr, int n){
-    std::cout << "Array: " << std::endl;
-    for (int j = 0; j < n; j++) {
-        std::cout << arr[j] << " ";
-    }
-    std::cout << std::endl;
+#include "h.h"
+
+int main() {
+
+    std::cout<<"Vvedite kolichestvo strok: "<<std::endl;
+    int m;
+    std::cin >> m;
+
+    std::cout << "Vvedite kolichestvo stolbikov: ";
+    int n;
+    std::cin >> n;
+
+    int **arr = new int*[m];
+    for (int i(0); i < m; i++)
+        arr[i] = new int[n];
+
+    zapolnenie(arr, m, n);
+    vyvod(arr, m, n);
+    summa(arr, m);
+
+
+    for (int i(0); i < m; i++)
+        delete arr[i];
+    delete arr;
+
+    return 0;
 }
-void minPodmassiv(int *arr) {
-    int minSum = 0;
-    int srednyaSumma = 0;
-    for (int i = 0; i <= sizeof(arr); i++) {
-
-        for (int j = i; j <= sizeof(arr); j++) {
-            srednyaSumma += arr[j];
-            if (srednyaSumma > minSum) {
-                minSum += srednyaSumma;
-            }
-        }
-    }
-    std::cout<<"Summa: "<<minSum<<std::endl;
-}
-
-
-    int main() {
-        std::cout << "Vvedite razmer massiva: " << std::endl;
-        int n;
-        std::cin >> n;
-        int *arr = new int[n];
-        for (int i = 0; i < n; i++)
-            std::cin >> arr[i];
-
-        vyvod(arr, n);
-        minPodmassiv(arr);
-
-
-        delete[] arr;
-        return 0;
-    }
